@@ -171,7 +171,7 @@ How can I help automate or optimize your business today?
                                 {props.children}
                               </a>
                             ),
-                            code({ node, inline, className, children, ...props }) {
+                            code({ node, className, children, inline, ...props }: React.HTMLAttributes<HTMLElement> & { node?: any; inline?: boolean }) {
                               const match = /language-(\w+)/.exec(className || '');
                               return !inline ? (
                                 <pre className="bg-gray-900/95 text-white p-4 rounded-2xl my-3 overflow-x-auto text-sm sm:text-base shadow-inner border border-cyan-700/20 animate-fade-in-pro">

@@ -32,7 +32,7 @@ Always provide clear, helpful, and inspiring advice about how these solutions ca
 Greet users warmly, answer questions in detail, and encourage them to ask about any business process they want to automate. You are available 24/7 and up-to-date with the latest in AI and automation.
 
 ---
-**Made by Yousri Amrane and Boularak Moncef and aya  and our incubator Professor Gahlam who helped us a lot .**`;
+**Made by Yousri Amrane and Boularak Moncef   and our incubator Professor Gahlam who helped us a lot .**`;
 
   const FIRST_ASSISTANT_GREETING = `👋 **Hello! I am Aurith AI Assistant.**
 

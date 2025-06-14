@@ -15,6 +15,13 @@ const team = [
     image: "/moncef.jpg",
     bio: "Co-founder of Aurith AI, ensuring projects are delivered on time and exceed client expectations with innovative solutions.",
     linkedin: "https://www.linkedin.com/in/mounsef-boularak-0a4b181a0/"
+  },
+  {
+    name: "Brahna Sonia",
+    role: "Marketing and Logistics Manager",
+    image: "/sonia.JPG",
+    bio: "Marketing and Logistics Manager at Aurith AI, ensuring smooth operations and effective marketing strategies for our AI solutions.",
+    linkedin: "#"
   }
 ];
 

@@ -1,13 +1,14 @@
 "use client";
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
-import { useState } from "react"
-import FormModal from "./form-modal"
 
 export default function Footer() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const scrollToHero = () => {
+    const heroSection = document.querySelector('section:first-of-type');
+    if (heroSection) {
+      heroSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <footer className="relative bg-gradient-to-b from-white/95 via-indigo-50 via-60% to-white/95 text-slate-800 pt-20 pb-10 px-4 overflow-hidden border-t-0 backdrop-blur-xl -mt-16">
   {/* Section divider for seamless connection */}
@@ -24,13 +25,17 @@ export default function Footer() {
         {/* CTA */}
         <div className="mb-10 flex flex-col sm:flex-row items-center gap-4">
           <button 
-            onClick={openModal}
+            onClick={scrollToHero}
             className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 text-white font-bold text-lg shadow-lg hover:scale-105 hover:shadow-blue-200/50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-200 cursor-pointer"
           >
             Get Started
           </button>
-          <FormModal isOpen={isModalOpen} onClose={closeModal} />
-          <Link href="/contact" className="px-8 py-3 rounded-full border-2 border-cyan-300/60 text-cyan-700 font-bold text-lg hover:bg-cyan-50/70 hover:text-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-100">Contact Sales</Link>
+          <a 
+            href="mailto:aurithdz@gmail.com?subject=Sales%20Inquiry"
+            className="px-8 py-3 rounded-full border-2 border-cyan-300/60 text-cyan-700 font-bold text-lg hover:bg-cyan-50/70 hover:text-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-100"
+          >
+            Contact Sales
+          </a>
         </div>
 
         {/* Navigation */}

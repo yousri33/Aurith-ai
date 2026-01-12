@@ -1,56 +1,117 @@
 "use client";
-import Link from "next/link";
-import { useState } from "react";
 
-const navLinks = [
-  { href: "#how-it-works", label: "How It Works" },
-  { href: "#automations", label: "Automations" },
-  { href: "#capabilities", label: "AI Capabilities" },
-  { href: "#who-we-help", label: "Who We Help" },
-  { href: "#team", label: "Team" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#contact", label: "Contact" },
-];
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { getCalApi } from "@calcom/embed-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleBooking = async () => {
+    const cal = await getCalApi({ namespace: "15min" });
+    cal("modal", {
+      calLink: "amrane-yousri-5mwtat/15min",
+      config: { layout: "month_view", theme: "light" },
+    });
+  };
+
+  const navLinks = [
+    { name: "How It Works", href: "#how-it-works" },
+    { name: "Automations", href: "#automations" },
+    { name: "Capabilities", href: "#capabilities" },
+  ];
+
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-blue-100/60 shadow-sm transition-all duration-300">
-      <div className="container mx-auto px-4 flex items-center justify-between h-16">
-        <Link href="/" className="text-2xl font-extrabold bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">
-          Aurith AI
+    <header
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+        scrolled
+          ? "py-3 bg-white/70 backdrop-blur-2xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] border-b border-white/50"
+          : "py-6 bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-6 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-3 group font-black tracking-tighter text-2xl">
+          <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-500 bg-clip-text text-transparent">
+            Aurith AI
+          </span>
         </Link>
-        <div className="hidden md:flex gap-6">
-          {navLinks.map(link => (
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-10">
+          {navLinks.map((link) => (
             <a
-              key={link.href}
+              key={link.name}
               href={link.href}
-              className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200"
+              className="text-sm font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors relative group"
             >
-              {link.label}
+              {link.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
-        </div>
-        <button className="md:hidden p-2" onClick={() => setOpen(o => !o)} aria-label="Toggle menu">
-          <span className="block w-6 h-0.5 bg-blue-700 mb-1"></span>
-          <span className="block w-6 h-0.5 bg-blue-700 mb-1"></span>
-          <span className="block w-6 h-0.5 bg-blue-700"></span>
+          <button
+            onClick={handleBooking}
+            className="group flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-500 text-white text-sm font-black rounded-full shadow-2xl shadow-blue-200 hover:scale-[1.05] active:scale-95 transition-all duration-300"
+          >
+            Book a Call
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </button>
+        </nav>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden w-10 h-10 flex items-center justify-center bg-white border border-slate-200 rounded-xl shadow-sm"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
-      {open && (
-        <div className="md:hidden bg-white/95 px-4 pb-4 pt-2 flex flex-col gap-4">
-          {navLinks.map(link => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200"
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-      )}
-    </nav>
+
+      {/* Mobile Nav Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-full left-0 right-0 md:hidden bg-white/95 backdrop-blur-3xl border-b border-slate-200 shadow-2xl overflow-hidden rounded-b-[40px]"
+          >
+            <div className="flex flex-col p-8 gap-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-2xl font-black text-slate-800 flex items-center justify-between"
+                >
+                  {link.name}
+                  <ArrowUpRight className="w-6 h-6 text-slate-300" />
+                </a>
+              ))}
+              <div className="h-px bg-slate-100 my-2" />
+              <button
+                onClick={() => {
+                  handleBooking();
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full py-5 bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-500 text-white font-black text-lg rounded-[24px] shadow-2xl shadow-blue-200"
+              >
+                Book Your Strategy Call
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }

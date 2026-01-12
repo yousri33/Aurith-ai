@@ -15,21 +15,14 @@ const team = [
     image: "/moncef.jpg",
     bio: "Co-founder of Aurith AI, ensuring projects are delivered on time and exceed client expectations with innovative solutions.",
     linkedin: "https://www.linkedin.com/in/mounsef-boularak-0a4b181a0/"
-  },
-  {
-    name: "Brahna Sonia",
-    role: "Marketing and Logistics Manager",
-    image: "/sonia.JPG",
-    bio: "Marketing and Logistics Manager at Aurith AI, ensuring smooth operations and effective marketing strategies for our AI solutions.",
-    linkedin: "#"
   }
 ];
 
 export default function TeamSection() {
   return (
-    <section className="relative overflow-hidden py-24 md:py-32 bg-white">
+    <section className="relative overflow-hidden py-24 md:py-32 bg-slate-50">
       {/* Static background with subtle texture */}
-      <div className="absolute inset-0 z-0 bg-white"></div>
+      <div className="absolute inset-0 z-0 bg-slate-50"></div>
       
       {/* Subtle texture */}
       <div className="absolute inset-0 z-0 opacity-5" style={{
@@ -38,8 +31,6 @@ export default function TeamSection() {
       }}></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        {/* Top section divider */}
-        <div className="absolute left-0 right-0 top-0 h-32 bg-gradient-to-b from-white to-transparent pointer-events-none -translate-y-full" />
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 bg-gradient-to-br from-blue-700 via-indigo-600 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">
           Meet Our Team
         </h2>
@@ -62,8 +53,6 @@ export default function TeamSection() {
           ))}
         </div>
       </div>
-      {/* Section divider */}
-      <div className="absolute left-0 right-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-white to-white pointer-events-none" />
     </section>
   );
 }

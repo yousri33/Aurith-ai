@@ -231,8 +231,6 @@ export default function WhoWeHelp() {
       }}></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Top section divider */}
-        <div className="absolute left-0 right-0 top-0 h-32 bg-gradient-to-b from-slate-50 to-transparent pointer-events-none -translate-y-full" />
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-in fade-in slide-in-from-top-10 duration-700 ease-out bg-gradient-to-br from-blue-700 via-indigo-600 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">Who We Help</h2>
         <p className="text-xl text-center text-slate-700 mb-16 max-w-2xl mx-auto animate-in fade-in slide-in-from-top-10 duration-700 ease-out delay-100">With Real AI Use Cases</p>
 
@@ -281,8 +279,6 @@ export default function WhoWeHelp() {
           ))}
         </div>
       </div>
-      {/* Section divider */}
-      <div className="absolute left-0 right-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-white to-white pointer-events-none" />
       <VideoModal isOpen={isVideoOpen} onClose={() => setIsVideoOpen(false)} videoSrc={videoSrc} />
     </section>
   )

@@ -1,87 +1,43 @@
-"use client";
-import { useEffect, useRef } from "react";
+"use client"
+
+import { useEffect } from "react"
+import Cal, { getCalApi } from "@calcom/embed-react"
+import {
+  Dialog,
+  DialogContent,
+} from "@/components/ui/dialog"
+import { X } from "lucide-react"
 
 interface FormModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen: boolean
+  onClose: () => void
 }
 
 export default function FormModal({ isOpen, onClose }: FormModalProps) {
-  const formContainerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      
-      // Load JotForm script
-      const script = document.createElement('script');
-      script.src = 'https://form.jotform.com/jsform/251424314179555';
-      script.async = true;
-      
-      if (formContainerRef.current) {
-        formContainerRef.current.innerHTML = ''; // Clear previous content
-        formContainerRef.current.appendChild(script);
-      }
-      
-      return () => {
-        if (formContainerRef.current) {
-          formContainerRef.current.innerHTML = '';
-        }
-      };
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
-
-  if (!isOpen) return null;
+    (async function () {
+      const cal = await getCalApi({"namespace":"15min"});
+      cal("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+    })();
+  }, [])
 
   return (
-    <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <div 
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 rounded-full hover:bg-gray-100 transition-colors"
-          aria-label="Close modal"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-6 h-6 text-gray-500"
-          >
-            <path d="M18 6 6 18" />
-            <path d="m6 6 12 12" />
-          </svg>
-        </button>
-        <div className="p-6">
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">Book a Free Strategy Call</h2>
-            <p className="text-gray-600 mt-2">Fill out the form below and we'll get back to you shortly.</p>
-          </div>
-          <div 
-            ref={formContainerRef}
-            className="w-full min-h-[500px] flex items-center justify-center"
-          >
-            <p className="text-gray-500">Loading form...</p>
-          </div>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-[900px] w-[95vw] h-[85vh] p-0 overflow-hidden border-0 bg-white/95 glass backdrop-blur-xl rounded-[40px] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)]">
+        <div className="w-full h-full relative p-4 pt-12">
+          {/* Animated background highlights to match the site theme */}
+          <div className="absolute inset-0 pointer-events-none -z-10 bg-gradient-to-br from-indigo-50/50 via-white to-cyan-50/50" />
+          <div className="absolute -top-20 -right-20 w-64 h-64 bg-indigo-200/20 blur-[100px] rounded-full" />
+          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-cyan-200/20 blur-[100px] rounded-full" />
+          
+          <Cal 
+            namespace="15min"
+            calLink="amrane-yousri-5mwtat/15min"
+            style={{width:"100%",height:"100%",overflow:"scroll"}}
+            config={{"layout":"month_view"}}
+          />
         </div>
-      </div>
-    </div>
-  );
+      </DialogContent>
+    </Dialog>
+  )
 }

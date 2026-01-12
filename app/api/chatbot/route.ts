@@ -27,8 +27,9 @@ export async function POST(req: Request) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: body.model || 'openai/gpt-3.5-turbo',
+        model: body.model || 'xiaomi/mimo-v2-flash:free',
         messages: body.messages || [],
+        reasoning: { enabled: true },
         ...body.extra_body
       })
     })
@@ -58,7 +59,14 @@ export async function POST(req: Request) {
     if (responseContent && !responseContent.includes('```') && !responseContent.includes('#') && !responseContent.includes('*')) {
       responseContent = responseContent.replace(/\n/g, '  \n');
     }
-    return NextResponse.json({ choices: [{ message: { content: responseContent } }] });
+    return NextResponse.json({ 
+      choices: [{ 
+        message: { 
+          content: responseContent,
+          reasoning_details: data.choices?.[0]?.message?.reasoning_details || data.choices?.[0]?.reasoning_details 
+        } 
+      }] 
+    });
   } catch (error) {
     console.error('Error:', error)
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })

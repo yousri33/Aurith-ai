@@ -25,9 +25,6 @@ export default function OurAutomations() {
     <section
       ref={ref}
       className="relative overflow-hidden py-24 md:py-32 bg-slate-50"
-      style={{
-        marginTop: '-1px',
-      }}
     >
       {/* Static background with subtle texture */}
       <div className="absolute inset-0 z-0 bg-slate-50"></div>
@@ -68,8 +65,6 @@ export default function OurAutomations() {
           ))}
         </div>
       </div>
-      {/* Section divider */}
-      <div className="absolute left-0 right-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-slate-50 to-slate-50 pointer-events-none" />
     </section>
   )
 }

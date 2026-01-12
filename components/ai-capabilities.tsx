@@ -62,8 +62,6 @@ export default function AiCapabilities() {
       }}></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        {/* Top section divider */}
-        <div className="absolute left-0 right-0 top-0 h-32 bg-gradient-to-b from-slate-50 to-transparent pointer-events-none -translate-y-full" />
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 animate-in fade-in slide-in-from-bottom-10 duration-700 ease-out delay-200 bg-gradient-to-br from-blue-700 via-indigo-600 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">AI Capabilities</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
           {capabilities.map((cap, idx) => (
@@ -99,8 +97,6 @@ export default function AiCapabilities() {
           <svg className="absolute right-8 bottom-8 w-8 h-8 text-indigo-100 opacity-50 animate-float-slow" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" strokeWidth="2" /></svg>
         </div>
       </div>
-      {/* Section divider */}
-      <div className="absolute left-0 right-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-slate-50 to-slate-50 pointer-events-none" />
     </section>
   )
 }

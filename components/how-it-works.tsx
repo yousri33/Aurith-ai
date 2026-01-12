@@ -37,9 +37,6 @@ export default function HowItWorks() {
     <section
       ref={ref}
       className="relative overflow-hidden py-24 md:py-32 bg-slate-50"
-      style={{
-        marginTop: '-1px',
-      }}
     >
       {/* Confetti on last step */}
       {activeStep === steps.length - 1 && (
@@ -61,8 +58,6 @@ export default function HowItWorks() {
         backgroundSize: '20px 20px',
       }}></div>
       <div className="container mx-auto px-4 relative z-10">
-        {/* Top section divider */}
-        <div className="absolute left-0 right-0 top-0 h-32 bg-gradient-to-b from-slate-50 to-transparent pointer-events-none -translate-y-full" />
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 animate-in fade-in slide-in-from-top-10 duration-700 ease-out bg-gradient-to-br from-blue-700 via-indigo-600 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">How It Works</h2>
         {/* Progress Indicator */}
         <div className="flex justify-center items-center mb-8">
@@ -79,7 +74,7 @@ export default function HowItWorks() {
             <div className="absolute inset-0 pointer-events-none z-0">
               <span className="absolute top-10 left-8 w-16 h-16 bg-cyan-200 opacity-30 blur-2xl rounded-full animate-float-mid" />
               <span className="absolute bottom-10 right-10 w-20 h-20 bg-indigo-200 opacity-20 blur-2xl rounded-full animate-float-slow" />
-              <span className="absolute top-1/3 right-1/4 w-12 h-12 bg-blue-200 opacity-30 blur-xl rounded-full animate-float-fast" />
+              <span className="absolute top-1/3 right-1/4 " />
               <span className="absolute bottom-1/4 left-1/3 w-10 h-10 bg-cyan-300 opacity-20 blur-xl rounded-full animate-float-mid" />
               <span className="absolute top-1/2 left-1/2 w-14 h-14 bg-indigo-300 opacity-20 blur-2xl rounded-full animate-float-slow" />
             </div>
@@ -153,8 +148,6 @@ export default function HowItWorks() {
           </div>
         </div>
       </div>
-      {/* Section divider */}
-      <div className="absolute left-0 right-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-slate-50 to-slate-50 pointer-events-none" />
     </section>
   )
 }

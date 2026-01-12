@@ -349,29 +349,32 @@ export default function FormModal({ isOpen, onClose }: FormModalProps) {
                                   classNames={{
                                     months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
                                     month: "space-y-4",
-                                    caption: "flex justify-center pt-1 relative items-center mb-4",
+                                    month_caption: "flex justify-center pt-1 relative items-center mb-4",
                                     caption_label: "text-lg font-black text-slate-800",
                                     nav: "space-x-1 flex items-center",
-                                    nav_button: cn(
-                                      "h-10 w-10 bg-white/80 hover:bg-white p-0 rounded-xl border-2 border-slate-200 hover:border-blue-400 transition-all shadow-sm hover:shadow-md hover:scale-110"
+                                    button_previous: cn(
+                                      "h-10 w-10 bg-white/80 hover:bg-white p-0 rounded-xl border-2 border-slate-200 hover:border-blue-400 transition-all shadow-sm hover:shadow-md hover:scale-110",
+                                      "absolute left-1"
                                     ),
-                                    nav_button_previous: "absolute left-1",
-                                    nav_button_next: "absolute right-1",
-                                    table: "w-full border-collapse space-y-1",
-                                    head_row: "flex justify-between mb-2",
-                                    head_cell: "text-slate-500 rounded-lg w-12 font-bold text-sm uppercase",
-                                    row: "flex w-full mt-2 justify-between",
-                                    cell: "relative p-0 text-center text-sm focus-within:relative focus-within:z-20",
-                                    day: cn(
+                                    button_next: cn(
+                                      "h-10 w-10 bg-white/80 hover:bg-white p-0 rounded-xl border-2 border-slate-200 hover:border-blue-400 transition-all shadow-sm hover:shadow-md hover:scale-110",
+                                      "absolute right-1"
+                                    ),
+                                    month_grid: "w-full border-collapse space-y-1",
+                                    weekdays: "flex justify-between mb-2",
+                                    weekday: "text-slate-500 rounded-lg w-12 font-bold text-sm uppercase",
+                                    week: "flex w-full mt-2 justify-between",
+                                    day: "relative p-0 text-center text-sm focus-within:relative focus-within:z-20",
+                                    day_button: cn(
                                       "h-12 w-12 p-0 font-bold rounded-xl hover:bg-blue-50 hover:scale-110 transition-all duration-200 aria-selected:opacity-100"
                                     ),
-                                    day_selected:
+                                    selected:
                                       "bg-gradient-to-br from-blue-600 via-indigo-600 to-cyan-500 text-white hover:from-blue-700 hover:via-indigo-700 hover:to-cyan-600 shadow-lg shadow-blue-200 scale-110 ring-4 ring-blue-100",
-                                    day_today: "bg-cyan-50 text-cyan-700 font-black border-2 border-cyan-200",
-                                    day_outside: "text-slate-300 opacity-50",
-                                    day_disabled: "text-slate-200 opacity-30 cursor-not-allowed",
-                                    day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
-                                    day_hidden: "invisible",
+                                    today: "bg-cyan-50 text-cyan-700 font-black border-2 border-cyan-200",
+                                    outside: "text-slate-300 opacity-50",
+                                    disabled: "text-slate-200 opacity-30 cursor-not-allowed",
+                                    range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
+                                    hidden: "invisible",
                                   }}
                                 />
                               </div>
